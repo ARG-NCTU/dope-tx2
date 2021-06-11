@@ -16,7 +16,7 @@ import message_filters
 import numpy as np
 import resource_retriever
 import rospy
-#import tf.transformations
+import tf.transformations
 from PIL import Image
 from PIL import ImageDraw
 from cv_bridge import CvBridge
@@ -207,7 +207,7 @@ class DopeNode(object):
             rospy.get_param('~topic_camera_info'),
             CameraInfo
         )
-        ts = message_filters.TimeSynchronizer([image_sub, info_sub], 1)
+        ts = message_filters.ApproximateTimeSynchronizer([image_sub, info_sub], 10, 0.1, allow_headerless=True)
         ts.registerCallback(self.image_callback)
 
         print("Running DOPE...  (Listening to camera topic: '{}')".format(rospy.get_param('~topic_camera')))
@@ -215,8 +215,9 @@ class DopeNode(object):
 
     def image_callback(self, image_msg, camera_info):
         """Image callback"""
-
+        print("Image callback")
         img = self.cv_bridge.imgmsg_to_cv2(image_msg, "rgb8")
+        
         # cv2.imwrite('img.png', cv2.cvtColor(img, cv2.COLOR_BGR2RGB))  # for debugging
 
         # Update camera matrix and distortion coefficients

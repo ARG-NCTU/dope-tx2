@@ -22,6 +22,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/argsubt/dope/catkin_ws/devel/include"
   "/home/argsubt/dope/catkin_ws/src/realsense-ros/realsense2_camera/include"
   "/home/argsubt/dope/catkin_ws/src/vision_opencv/cv_bridge/include"
+  "/home/argsubt/dope/catkin_ws/src/geometry2/tf2_ros/include"
+  "/home/argsubt/dope/catkin_ws/src/geometry2/tf2/include"
+  "/home/argsubt/dope/catkin_ws/src/geometry2/tf2_msgs/include"
   "/home/argsubt/dope/catkin_ws/src/realsense-ros/ddynamic_reconfigure/include"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
@@ -32,6 +35,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/argsubt/dope/catkin_ws/build/vision_opencv/cv_bridge/src/CMakeFiles/cv_bridge.dir/DependInfo.cmake"
+  "/home/argsubt/dope/catkin_ws/build/geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/DependInfo.cmake"
+  "/home/argsubt/dope/catkin_ws/build/geometry2/tf2/CMakeFiles/tf2.dir/DependInfo.cmake"
   "/home/argsubt/dope/catkin_ws/build/realsense-ros/ddynamic_reconfigure/CMakeFiles/ddynamic_reconfigure.dir/DependInfo.cmake"
   )
 
