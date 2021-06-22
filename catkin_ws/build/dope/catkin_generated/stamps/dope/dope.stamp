@@ -133,7 +133,7 @@ class DopeNode(object):
             try:
                 M = np.array(rospy.get_param('~model_transforms')[model], dtype='float64')
                 self.model_transforms[model] = np.array([0.0, 0.0, 0.0, 1.0], dtype='float64')
-                #self.model_transforms[model] = tf.transformations.quaternion_from_matrix(M)
+                self.model_transforms[model] = tf.transformations.quaternion_from_matrix(M)
             except KeyError:
                 self.model_transforms[model] = np.array([0.0, 0.0, 0.0, 1.0], dtype='float64')
 
@@ -215,7 +215,6 @@ class DopeNode(object):
 
     def image_callback(self, image_msg, camera_info):
         """Image callback"""
-        print("Image callback")
         img = self.cv_bridge.imgmsg_to_cv2(image_msg, "rgb8")
         
         # cv2.imwrite('img.png', cv2.cvtColor(img, cv2.COLOR_BGR2RGB))  # for debugging
@@ -267,9 +266,8 @@ class DopeNode(object):
                 loc = result["location"]
                 ori = result["quaternion"]
 
-                # transform orientation
-                #transformed_ori = tf.transformations.quaternion_multiply(ori, self.model_transforms[m])
-                transformed_ori = [0.0,0.0,0.0,1.0]
+                #transform orientation
+                transformed_ori = tf.transformations.quaternion_multiply(ori, self.model_transforms[m])
 
                 # rotate bbox dimensions if necessary
                 # (this only works properly if model_transform is in 90 degree angles)
@@ -396,11 +394,11 @@ class DopeNode(object):
 
 
 def rotate_vector(vector, quaternion):
-    #q_conj = tf.transformations.quaternion_conjugate(quaternion)
+    q_conj = tf.transformations.quaternion_conjugate(quaternion)
     vector = np.array(vector, dtype='float64')
     vector = np.append(vector, [0.0])
-    #vector = tf.transformations.quaternion_multiply(q_conj, vector)
-    #vector = tf.transformations.quaternion_multiply(vector, quaternion)
+    vector = tf.transformations.quaternion_multiply(q_conj, vector)
+    vector = tf.transformations.quaternion_multiply(vector, quaternion)
     return vector[:3]
 
 
