@@ -13,8 +13,6 @@
 `source tx2_catkin_make.sh`
 
 ## terminal 1
-`ssh xavier-nx01@10.42.0.3`
-
 `cd dope-tx2`
 
 `source tx2_docker_run.sh`
@@ -26,8 +24,6 @@
 `roslaunch dope dope.launch`
 
 ## terminal 2 (if you need compressed image)
-`ssh xavier-nx01@10.42.0.3`
-
 `cd dope-tx2`
 
 `source tx2_docker_join.sh`
