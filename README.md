@@ -1,6 +1,6 @@
 # dope-tx2
 ### setup
-`git clone https://github.com/Chi-Ruei/dope-tx2.git`
+`git clone https://github.com/ARG-NCTU/dope-tx2.git`
 
 `cd dope-tx2`
 
